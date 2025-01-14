@@ -15,11 +15,11 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
         const base64 = reader.result.split(",")[1];
 
         const response = await fetch(
-            `https://api.github.com/repos/SEU_USUARIO/NOME_DO_REPOSITORIO/contents/provas/${trimestre}/${materia}/${arquivo.name}`,
+            `https://api.github.com/repos/rds-mimosa/upload/contents/provas/${trimestre}/${materia}/${arquivo.name}`
             {
                 method: "PUT",
                 headers: {
-                    Authorization: "Bearer SEU_TOKEN_GITHUB",
+                    Authorization: "Bearer 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",
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
