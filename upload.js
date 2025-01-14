@@ -21,7 +21,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
         const response = await fetch(apiUrl, {
             method: "PUT",
             headers: {
-                Authorization: "Bearer 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",  // Substitua pelo seu token
+                Authorization: "Bearer ghp_FGTwo9pwOn7STb7ZpEQVUDB30geudu0TJZZo",  // Substitua pelo seu token
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
