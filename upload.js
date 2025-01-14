@@ -14,25 +14,28 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
     reader.onload = async function () {
         const base64 = reader.result.split(",")[1];
 
-        const response = await fetch(
-            `https://api.github.com/repos/rds-mimosa/upload/contents/provas/${trimestre}/${materia}/${arquivo.name}`
-            {
-                method: "PUT",
-                headers: {
-                    Authorization: "Bearer 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",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    message: `Adicionando prova: ${arquivo.name}`,
-                    content: base64,
-                }),
-            }
-        );
+        // Log da URL para verificação
+        const apiUrl = `https://api.github.com/repos/rds-mimosa/upload/contents/provas/${trimestre}/${materia}/${arquivo.name}`;
+        console.log("URL para o GitHub:", apiUrl);  // Verificando a URL gerada
+
+        const response = await fetch(apiUrl, {
+            method: "PUT",
+            headers: {
+                Authorization: "Bearer SEU_TOKEN_GITHUB",  // Substitua pelo seu token
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message: `Adicionando prova: ${arquivo.name}`,
+                content: base64,
+            }),
+        });
 
         if (response.ok) {
             alert("Arquivo enviado com sucesso!");
         } else {
             alert("Erro ao enviar arquivo.");
+            const errorData = await response.json();
+            console.error("Detalhes do erro:", errorData);  // Exibir detalhes do erro
         }
     };
 
